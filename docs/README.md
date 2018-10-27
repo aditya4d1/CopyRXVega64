@@ -17,6 +17,7 @@ We write the kernels in both **hip** and **asm** to find which one performs bett
 
 #### Naming
 There is a naming scheme used for naming kernel names (and assembly files too).  The kernels have total loops, unroll factors, number of loops, number of workitems in a workgroup and implementation of the kernel in their names. For example, `foo_128_8_16_256_asm` means the number of workitems are `256`, as each workitem loads `4 32-bit` values or `16 bytes` the total number of loops each workgroups should do to transfer 1MB of data is `128`. We pick loop unroll factor as `8` therefore, the number of loops each workitem does after unrolling is `16` (`128/8`).
+
 ***
 Output buffer is validated after running the kernel checking of mistakes in implementation.
 
