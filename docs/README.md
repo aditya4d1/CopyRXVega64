@@ -50,3 +50,9 @@ GPU[0] 		:
 ### Performance
 
 The following chart shows performance of different kernels 
+![alt text](https://raw.githubusercontent.com/adityaatluri/CopyRXVega64/master/docs/results.png)
+
+- The assembly kernel performance is shown on the left side of the chart
+- The hip kernel performance is shown on the right side of the chart
+- The bandwidth at different power states are shows on Y-axis
+- Different kernels used for benchmarking is shown on X-axis
