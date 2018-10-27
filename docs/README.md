@@ -7,16 +7,18 @@ You can view the [source](https://github.com/adityaatluri/CopyRXVega64) and run 
 ### Introduction
 
 #### Workgroup configurations
-In this experiment, we launch a single workgroup of `256`, `512` and `1024` workitems doing a buffer copy of **1MB**; with each workitem loading a `dwordx4 (128bit)` at the same time. With these number of workitems per workgroup, there are multiple ways to write a kernel, one way to use a loop whose body does single copy from source buffer to destination buffer; another possible way is to do double copy from source buffer to destination buffer thereby decreasing the number of loops by half. Therefore, we use different unroll factors to do loop unrolling for each workgroup dimensions; the ones tested are `2`, `4`, `8` and `16` (for `1024` workitems workgroup, we use only until unroll factor of `8` as the number of registers available per workitem can't fit unroll factor of `16`).
+In this experiment, we launch a single workgroup of `256`, `512` and `1024` workitems doing a buffer copy of **1MB**; where each workitem loads a `dwordx4 (128bit)`. With different number of workitems per workgroup, there are multiple ways to write a kernel, one way is to use a loop whose body does single copy from source buffer to destination buffer; another possible way is to do double copy from source buffer to destination buffer thereby decreasing the number of loops by half. Therefore, we use different unroll factors to do loop unrolling for each workgroup dimensions; the ones tested are `2`, `4`, `8` and `16` (for `1024` workitems workgroup, we use only until unroll factor of `8` as the number of registers available per workitem can't fit unroll factor of `16`).
+
+
+***
+We write the kernels in both **hip** and **asm** to find which one performs the best.
+
+#### Naming
+There is a naming scheme used for naming kernel names (and assembly files too).  The kernels have total loops, unroll factors, number of loops, number of workitems in a workgroup and implementation of the kernel in their names. For example, `foo_128_8_16_256_asm` means the number of workitems are `256`, as each workitem loads `4 32-bit` values or `16 bytes` the total number of loops each workgroups should do to transfer 1MB of data is `128`. We pick loop unroll factor as `8` therefore, the number of loops each workitem does after unrolling is `16` (`128/8`).
 
 ```
 foo_<total loops>_<unroll factor>_<number of loops>_<number of workitems>
 ```
-***
-We write the kernels in both **hip** and **asm** to find which one performs better than the other.
-
-#### Naming
-There is a naming scheme used for naming kernel names (and assembly files too).  The kernels have total loops, unroll factors, number of loops, number of workitems in a workgroup and implementation of the kernel in their names. For example, `foo_128_8_16_256_asm` means the number of workitems are `256`, as each workitem loads `4 32-bit` values or `16 bytes` the total number of loops each workgroups should do to transfer 1MB of data is `128`. We pick loop unroll factor as `8` therefore, the number of loops each workitem does after unrolling is `16` (`128/8`).
 
 ***
 Output buffer is validated after running the kernel checking of mistakes in implementation.
@@ -57,3 +59,5 @@ The following chart shows performance of different kernels
 - The hip kernel performance is shown on the right side of the chart
 - The bandwidth at different power states are shows on Y-axis
 - Different kernels used for benchmarking is shown on X-axis
+- Each colored line in the graph represents a power state
+- Power states in the graph are named after which power domain it represents and the state it is in. For example **S5M3** represents **shader clock = 1401MHz** and **memory clock = 945MHz**
