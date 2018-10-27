@@ -222,13 +222,12 @@ int main(int argc, char *argv[]) {
       std::cout << "\033[1;32mtotal loops = " << v_total_loops[i]
                 << " unroll factor = " << v_unroll_factor[i]
                 << " num loops = " << v_num_loops[i] << "\033[0m" << std::endl;
-      std::cout << "\033[1;32mBandwidth: " << bw
-                << " GBps\033[0m" << std::endl;
+      std::cout << "\033[1;32mBandwidth: " << bw << " GBps\033[0m" << std::endl;
 
     } else {
-      std::cout << v_kernel_names[i] + "_asm" << "\t\t" << v_total_loops[i] << "\t\t"
-                << v_unroll_factor[i] << "\t\t\t" << v_num_loops[i] << "\t\t\t"
-                << bw << std::endl;
+      std::cout << v_kernel_names[i] + "_asm"
+                << "\t\t" << v_total_loops[i] << "\t\t" << v_unroll_factor[i]
+                << "\t\t\t" << v_num_loops[i] << "\t\t\t" << bw << std::endl;
     }
 
     for (int j = 0; j < k_length; j++) {
@@ -250,8 +249,10 @@ int main(int argc, char *argv[]) {
     constexpr int k_wis = 256;
     constexpr int k_nloops = 16;
     constexpr int k_tloops = 256;
-    std::string kernel_name =
-        "foo_" + std::to_string(k_tloops) + "_" + std::to_string(k_tloops/k_nloops) + "_" + std::to_string(k_nloops) + "_" + std::to_string(k_wis) + "_hip";
+    std::string kernel_name = "foo_" + std::to_string(k_tloops) + "_" +
+                              std::to_string(k_tloops / k_nloops) + "_" +
+                              std::to_string(k_nloops) + "_" +
+                              std::to_string(k_wis) + "_hip";
     if (!enable_benchmarking_mode)
       std::cout << "\033[1;34mRunning kernel " << kernel_name << " ... \033[0m"
                 << std::endl;
@@ -292,8 +293,7 @@ int main(int argc, char *argv[]) {
                 << " unroll factor = " << k_tloops / k_nloops
                 << " num loops = " << k_nloops << "\033[0m" << std::endl;
 
-      std::cout << "\033[1;32mBandwidth: " << bw
-                << " GBps\033[0m" << std::endl;
+      std::cout << "\033[1;32mBandwidth: " << bw << " GBps\033[0m" << std::endl;
     }
 
     for (int j = 0; j < k_length; j++) {
@@ -305,8 +305,8 @@ int main(int argc, char *argv[]) {
 
     if (enable_benchmarking_mode) {
       std::cout << kernel_name << "\t\t" << k_tloops << "\t\t"
-                << k_tloops / k_nloops << "\t\t\t" << k_nloops << "\t\t\t"
-                << bw << std::endl;
+                << k_tloops / k_nloops << "\t\t\t" << k_nloops << "\t\t\t" << bw
+                << std::endl;
     } else {
       std::cout << "Finished running kernel " << kernel_name << std::endl;
     }
@@ -316,8 +316,10 @@ int main(int argc, char *argv[]) {
     constexpr int k_wis = 256;
     constexpr int k_nloops = 32;
     constexpr int k_tloops = 256;
-    std::string kernel_name =
-        "foo_" + std::to_string(k_tloops) + "_" + std::to_string(k_tloops/k_nloops) + "_" + std::to_string(k_nloops) + "_" + std::to_string(k_wis) + "_hip";
+    std::string kernel_name = "foo_" + std::to_string(k_tloops) + "_" +
+                              std::to_string(k_tloops / k_nloops) + "_" +
+                              std::to_string(k_nloops) + "_" +
+                              std::to_string(k_wis) + "_hip";
 
     if (!enable_benchmarking_mode)
       std::cout << "\033[1;34mRunning kernel " << kernel_name << " ... \033[0m"
@@ -359,8 +361,7 @@ int main(int argc, char *argv[]) {
                 << " unroll factor = " << k_tloops / k_nloops
                 << " num loops = " << k_nloops << "\033[0m" << std::endl;
 
-      std::cout << "\033[1;32mBandwidth: " << bw
-                << " GBps\033[0m" << std::endl;
+      std::cout << "\033[1;32mBandwidth: " << bw << " GBps\033[0m" << std::endl;
     }
 
     for (int j = 0; j < k_length; j++) {
@@ -372,20 +373,21 @@ int main(int argc, char *argv[]) {
 
     if (enable_benchmarking_mode) {
       std::cout << kernel_name << "\t\t" << k_tloops << "\t\t"
-                << k_tloops / k_nloops << "\t\t\t" << k_nloops << "\t\t\t"
-                << bw << std::endl;
+                << k_tloops / k_nloops << "\t\t\t" << k_nloops << "\t\t\t" << bw
+                << std::endl;
     } else {
       std::cout << "Finished running kernel " << kernel_name << std::endl;
     }
-
   }
 
   {
     constexpr int k_wis = 256;
     constexpr int k_nloops = 64;
     constexpr int k_tloops = 256;
-    std::string kernel_name =
-        "foo_" + std::to_string(k_tloops) + "_" + std::to_string(k_tloops/k_nloops) + "_" + std::to_string(k_nloops) + "_" + std::to_string(k_wis) + "_hip";
+    std::string kernel_name = "foo_" + std::to_string(k_tloops) + "_" +
+                              std::to_string(k_tloops / k_nloops) + "_" +
+                              std::to_string(k_nloops) + "_" +
+                              std::to_string(k_wis) + "_hip";
 
     if (!enable_benchmarking_mode)
       std::cout << "\033[1;34mRunning kernel " << kernel_name << " ... \033[0m"
@@ -427,8 +429,7 @@ int main(int argc, char *argv[]) {
                 << " unroll factor = " << k_tloops / k_nloops
                 << " num loops = " << k_nloops << "\033[0m" << std::endl;
 
-      std::cout << "\033[1;32mBandwidth: " << bw
-                << " GBps\033[0m" << std::endl;
+      std::cout << "\033[1;32mBandwidth: " << bw << " GBps\033[0m" << std::endl;
     }
 
     for (int j = 0; j < k_length; j++) {
@@ -440,20 +441,21 @@ int main(int argc, char *argv[]) {
 
     if (enable_benchmarking_mode) {
       std::cout << kernel_name << "\t\t" << k_tloops << "\t\t"
-                << k_tloops / k_nloops << "\t\t\t" << k_nloops << "\t\t\t"
-                << bw << std::endl;
+                << k_tloops / k_nloops << "\t\t\t" << k_nloops << "\t\t\t" << bw
+                << std::endl;
     } else {
       std::cout << "Finished running kernel " << kernel_name << std::endl;
     }
-
   }
 
   {
     constexpr int k_wis = 256;
     constexpr int k_nloops = 128;
     constexpr int k_tloops = 256;
-    std::string kernel_name =
-        "foo_" + std::to_string(k_tloops) + "_" + std::to_string(k_tloops/k_nloops) + "_" + std::to_string(k_nloops) + "_" + std::to_string(k_wis) + "_hip";
+    std::string kernel_name = "foo_" + std::to_string(k_tloops) + "_" +
+                              std::to_string(k_tloops / k_nloops) + "_" +
+                              std::to_string(k_nloops) + "_" +
+                              std::to_string(k_wis) + "_hip";
 
     if (!enable_benchmarking_mode)
       std::cout << "\033[1;34mRunning kernel " << kernel_name << " ... \033[0m"
@@ -495,8 +497,7 @@ int main(int argc, char *argv[]) {
                 << " unroll factor = " << k_tloops / k_nloops
                 << " num loops = " << k_nloops << "\033[0m" << std::endl;
 
-      std::cout << "\033[1;32mBandwidth: " << bw
-                << " GBps\033[0m" << std::endl;
+      std::cout << "\033[1;32mBandwidth: " << bw << " GBps\033[0m" << std::endl;
     }
 
     for (int j = 0; j < k_length; j++) {
@@ -508,20 +509,21 @@ int main(int argc, char *argv[]) {
 
     if (enable_benchmarking_mode) {
       std::cout << kernel_name << "\t\t" << k_tloops << "\t\t"
-                << k_tloops / k_nloops << "\t\t\t" << k_nloops << "\t\t\t"
-                << bw << std::endl;
+                << k_tloops / k_nloops << "\t\t\t" << k_nloops << "\t\t\t" << bw
+                << std::endl;
     } else {
       std::cout << "Finished running kernel " << kernel_name << std::endl;
     }
-
   }
 
   {
     constexpr int k_wis = 512;
     constexpr int k_nloops = 8;
     constexpr int k_tloops = 128;
-    std::string kernel_name =
-        "foo_" + std::to_string(k_tloops) + "_" + std::to_string(k_tloops/k_nloops) + "_" + std::to_string(k_nloops) + "_" + std::to_string(k_wis) + "_hip";
+    std::string kernel_name = "foo_" + std::to_string(k_tloops) + "_" +
+                              std::to_string(k_tloops / k_nloops) + "_" +
+                              std::to_string(k_nloops) + "_" +
+                              std::to_string(k_wis) + "_hip";
 
     if (!enable_benchmarking_mode)
       std::cout << "\033[1;34mRunning kernel " << kernel_name << " ... \033[0m"
@@ -563,8 +565,7 @@ int main(int argc, char *argv[]) {
                 << " unroll factor = " << k_tloops / k_nloops
                 << " num loops = " << k_nloops << "\033[0m" << std::endl;
 
-      std::cout << "\033[1;32mBandwidth: " << bw
-                << " GBps\033[0m" << std::endl;
+      std::cout << "\033[1;32mBandwidth: " << bw << " GBps\033[0m" << std::endl;
     }
 
     for (int j = 0; j < k_length; j++) {
@@ -576,20 +577,21 @@ int main(int argc, char *argv[]) {
 
     if (enable_benchmarking_mode) {
       std::cout << kernel_name << "\t\t" << k_tloops << "\t\t"
-                << k_tloops / k_nloops << "\t\t\t" << k_nloops << "\t\t\t"
-                << bw << std::endl;
+                << k_tloops / k_nloops << "\t\t\t" << k_nloops << "\t\t\t" << bw
+                << std::endl;
     } else {
       std::cout << "Finished running kernel " << kernel_name << std::endl;
     }
-
   }
 
   {
     constexpr int k_wis = 512;
     constexpr int k_nloops = 16;
     constexpr int k_tloops = 128;
-    std::string kernel_name =
-        "foo_" + std::to_string(k_tloops) + "_" + std::to_string(k_tloops/k_nloops) + "_" + std::to_string(k_nloops) + "_" + std::to_string(k_wis) + "_hip";
+    std::string kernel_name = "foo_" + std::to_string(k_tloops) + "_" +
+                              std::to_string(k_tloops / k_nloops) + "_" +
+                              std::to_string(k_nloops) + "_" +
+                              std::to_string(k_wis) + "_hip";
 
     if (!enable_benchmarking_mode)
       std::cout << "\033[1;34mRunning kernel " << kernel_name << " ... \033[0m"
@@ -631,8 +633,7 @@ int main(int argc, char *argv[]) {
                 << " unroll factor = " << k_tloops / k_nloops
                 << " num loops = " << k_nloops << "\033[0m" << std::endl;
 
-      std::cout << "\033[1;32mBandwidth: " << bw
-                << " GBps\033[0m" << std::endl;
+      std::cout << "\033[1;32mBandwidth: " << bw << " GBps\033[0m" << std::endl;
     }
 
     for (int j = 0; j < k_length; j++) {
@@ -644,20 +645,21 @@ int main(int argc, char *argv[]) {
 
     if (enable_benchmarking_mode) {
       std::cout << kernel_name << "\t\t" << k_tloops << "\t\t"
-                << k_tloops / k_nloops << "\t\t\t" << k_nloops << "\t\t\t"
-                << bw << std::endl;
+                << k_tloops / k_nloops << "\t\t\t" << k_nloops << "\t\t\t" << bw
+                << std::endl;
     } else {
       std::cout << "Finished running kernel " << kernel_name << std::endl;
     }
-
   }
 
   {
     constexpr int k_wis = 512;
     constexpr int k_nloops = 32;
     constexpr int k_tloops = 128;
-    std::string kernel_name =
-        "foo_" + std::to_string(k_tloops) + "_" + std::to_string(k_tloops/k_nloops) + "_" + std::to_string(k_nloops) + "_" + std::to_string(k_wis) + "_hip";
+    std::string kernel_name = "foo_" + std::to_string(k_tloops) + "_" +
+                              std::to_string(k_tloops / k_nloops) + "_" +
+                              std::to_string(k_nloops) + "_" +
+                              std::to_string(k_wis) + "_hip";
 
     if (!enable_benchmarking_mode)
       std::cout << "\033[1;34mRunning kernel " << kernel_name << " ... \033[0m"
@@ -699,8 +701,7 @@ int main(int argc, char *argv[]) {
                 << " unroll factor = " << k_tloops / k_nloops
                 << " num loops = " << k_nloops << "\033[0m" << std::endl;
 
-      std::cout << "\033[1;32mBandwidth: " << bw
-                << " GBps\033[0m" << std::endl;
+      std::cout << "\033[1;32mBandwidth: " << bw << " GBps\033[0m" << std::endl;
     }
 
     for (int j = 0; j < k_length; j++) {
@@ -712,21 +713,21 @@ int main(int argc, char *argv[]) {
 
     if (enable_benchmarking_mode) {
       std::cout << kernel_name << "\t\t" << k_tloops << "\t\t"
-                << k_tloops / k_nloops << "\t\t\t" << k_nloops << "\t\t\t"
-                << bw << std::endl;
+                << k_tloops / k_nloops << "\t\t\t" << k_nloops << "\t\t\t" << bw
+                << std::endl;
     } else {
       std::cout << "Finished running kernel " << kernel_name << std::endl;
     }
-
-
   }
 
   {
     constexpr int k_wis = 512;
     constexpr int k_nloops = 64;
     constexpr int k_tloops = 128;
-    std::string kernel_name =
-        "foo_" + std::to_string(k_tloops) + "_" + std::to_string(k_tloops/k_nloops) + "_" + std::to_string(k_nloops) + "_" + std::to_string(k_wis) + "_hip";
+    std::string kernel_name = "foo_" + std::to_string(k_tloops) + "_" +
+                              std::to_string(k_tloops / k_nloops) + "_" +
+                              std::to_string(k_nloops) + "_" +
+                              std::to_string(k_wis) + "_hip";
 
     if (!enable_benchmarking_mode)
       std::cout << "\033[1;34mRunning kernel " << kernel_name << " ... \033[0m"
@@ -768,8 +769,7 @@ int main(int argc, char *argv[]) {
                 << " unroll factor = " << k_tloops / k_nloops
                 << " num loops = " << k_nloops << "\033[0m" << std::endl;
 
-      std::cout << "\033[1;32mBandwidth: " << bw
-                << " GBps\033[0m" << std::endl;
+      std::cout << "\033[1;32mBandwidth: " << bw << " GBps\033[0m" << std::endl;
     }
 
     for (int j = 0; j < k_length; j++) {
@@ -781,20 +781,21 @@ int main(int argc, char *argv[]) {
 
     if (enable_benchmarking_mode) {
       std::cout << kernel_name << "\t\t" << k_tloops << "\t\t"
-                << k_tloops / k_nloops << "\t\t\t" << k_nloops << "\t\t\t"
-                << bw << std::endl;
+                << k_tloops / k_nloops << "\t\t\t" << k_nloops << "\t\t\t" << bw
+                << std::endl;
     } else {
       std::cout << "Finished running kernel " << kernel_name << std::endl;
     }
-
   }
 
   {
     constexpr int k_wis = 1024;
     constexpr int k_nloops = 8;
     constexpr int k_tloops = 64;
-    std::string kernel_name =
-        "foo_" + std::to_string(k_tloops) + "_" + std::to_string(k_tloops/k_nloops) + "_" + std::to_string(k_nloops) + "_" + std::to_string(k_wis) + "_hip";
+    std::string kernel_name = "foo_" + std::to_string(k_tloops) + "_" +
+                              std::to_string(k_tloops / k_nloops) + "_" +
+                              std::to_string(k_nloops) + "_" +
+                              std::to_string(k_wis) + "_hip";
 
     if (!enable_benchmarking_mode)
       std::cout << "\033[1;34mRunning kernel " << kernel_name << " ... \033[0m"
@@ -836,8 +837,7 @@ int main(int argc, char *argv[]) {
                 << " unroll factor = " << k_tloops / k_nloops
                 << " num loops = " << k_nloops << "\033[0m" << std::endl;
 
-      std::cout << "\033[1;32mBandwidth: " << bw
-                << " GBps\033[0m" << std::endl;
+      std::cout << "\033[1;32mBandwidth: " << bw << " GBps\033[0m" << std::endl;
     }
 
     for (int j = 0; j < k_length; j++) {
@@ -849,20 +849,21 @@ int main(int argc, char *argv[]) {
 
     if (enable_benchmarking_mode) {
       std::cout << kernel_name << "\t\t" << k_tloops << "\t\t"
-                << k_tloops / k_nloops << "\t\t\t" << k_nloops << "\t\t\t"
-                << bw << std::endl;
+                << k_tloops / k_nloops << "\t\t\t" << k_nloops << "\t\t\t" << bw
+                << std::endl;
     } else {
       std::cout << "Finished running kernel " << kernel_name << std::endl;
     }
-
   }
 
   {
     constexpr int k_wis = 1024;
     constexpr int k_nloops = 16;
     constexpr int k_tloops = 64;
-    std::string kernel_name =
-        "foo_" + std::to_string(k_tloops) + "_" + std::to_string(k_tloops/k_nloops) + "_" + std::to_string(k_nloops) + "_" + std::to_string(k_wis) + "_hip";
+    std::string kernel_name = "foo_" + std::to_string(k_tloops) + "_" +
+                              std::to_string(k_tloops / k_nloops) + "_" +
+                              std::to_string(k_nloops) + "_" +
+                              std::to_string(k_wis) + "_hip";
 
     if (!enable_benchmarking_mode)
       std::cout << "\033[1;34mRunning kernel " << kernel_name << " ... \033[0m"
@@ -904,8 +905,7 @@ int main(int argc, char *argv[]) {
                 << " unroll factor = " << k_tloops / k_nloops
                 << " num loops = " << k_nloops << "\033[0m" << std::endl;
 
-      std::cout << "\033[1;32mBandwidth: " << bw
-                << " GBps\033[0m" << std::endl;
+      std::cout << "\033[1;32mBandwidth: " << bw << " GBps\033[0m" << std::endl;
     }
 
     for (int j = 0; j < k_length; j++) {
@@ -917,20 +917,21 @@ int main(int argc, char *argv[]) {
 
     if (enable_benchmarking_mode) {
       std::cout << kernel_name << "\t\t" << k_tloops << "\t\t"
-                << k_tloops / k_nloops << "\t\t\t" << k_nloops << "\t\t\t"
-                << bw << std::endl;
+                << k_tloops / k_nloops << "\t\t\t" << k_nloops << "\t\t\t" << bw
+                << std::endl;
     } else {
       std::cout << "Finished running kernel " << kernel_name << std::endl;
     }
-
   }
 
   {
     constexpr int k_wis = 1024;
     constexpr int k_nloops = 32;
     constexpr int k_tloops = 64;
-    std::string kernel_name =
-        "foo_" + std::to_string(k_tloops) + "_" + std::to_string(k_tloops/k_nloops) + "_" + std::to_string(k_nloops) + "_" + std::to_string(k_wis) + "_hip";
+    std::string kernel_name = "foo_" + std::to_string(k_tloops) + "_" +
+                              std::to_string(k_tloops / k_nloops) + "_" +
+                              std::to_string(k_nloops) + "_" +
+                              std::to_string(k_wis) + "_hip";
 
     if (!enable_benchmarking_mode)
       std::cout << "\033[1;34mRunning kernel " << kernel_name << " ... \033[0m"
@@ -972,8 +973,7 @@ int main(int argc, char *argv[]) {
                 << " unroll factor = " << k_tloops / k_nloops
                 << " num loops = " << k_nloops << "\033[0m" << std::endl;
 
-      std::cout << "\033[1;32mBandwidth: " << bw
-                << " GBps\033[0m" << std::endl;
+      std::cout << "\033[1;32mBandwidth: " << bw << " GBps\033[0m" << std::endl;
     }
 
     for (int j = 0; j < k_length; j++) {
@@ -985,12 +985,11 @@ int main(int argc, char *argv[]) {
 
     if (enable_benchmarking_mode) {
       std::cout << kernel_name << "\t\t" << k_tloops << "\t\t"
-                << k_tloops / k_nloops << "\t\t\t" << k_nloops << "\t\t\t"
-                << bw << std::endl;
+                << k_tloops / k_nloops << "\t\t\t" << k_nloops << "\t\t\t" << bw
+                << std::endl;
     } else {
       std::cout << "Finished running kernel " << kernel_name << std::endl;
     }
-
   }
 
   //  delete[] v_modules;
