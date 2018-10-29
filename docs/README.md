@@ -50,7 +50,30 @@ GPU[0] 		:
 ====================           End of ROCm SMI Log          ====================
 ```
 
-### Performance
+#### Implementation
+
+The unrolled copy kernels have a pattern in their implementation. In this topic, we describe how copy kernels are written in assembly to achieve good performance over hip kernels.
+
+We split the assembly kernel into 4 sections, section 1, 2, 3 and 4.
+
+##### Section 1
+This section contains unroll factor number of load instructions to get data from input buffer. The input pointer is incremented between each load instruction where the same registers are used to store the incremented pointer; we are doing this as we don't have to visit the same memory location again. No wait count instructions are issued as we are not ready to copy the loaded data to output buffer.
+
+##### Section 2
+This section contains unroll factor number of loads and stores. The load instructions get the data from next segment of unroll factor where as the store instructions wait for data requested in the previous section to arrive. The code pattern here is, 
+1. Wait for data requested through a load operation arrives
+2. Write data to output buffer
+3. Reuse same data registers to load next unroll factor segment of input buffer
+
+Here, the `vmcnt` number keeps increasing because, in gfx8, gfx9, `vmcnt` counts both loads and store operations issued to memory sub-system.
+
+##### Section 3
+This section is loop section. This section runs `number of loop - 2` times, where the body is same as section 2 except the `vmcnt` values are constant = ```(unroll factor - 1) * 2 ```
+
+##### Section 4
+This section stores data from trailing loads dispatched in the previous section to output buffer. Wait count instructions are used appropriately.
+
+### Results
 
 The following chart shows performance of different kernels 
 ![alt text](https://raw.githubusercontent.com/adityaatluri/CopyRXVega64/master/docs/results.png)
