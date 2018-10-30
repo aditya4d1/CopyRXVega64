@@ -9,10 +9,16 @@
 
 typedef float float4_t __attribute__((ext_vector_type(4)));
 
-#define HIP_CHECK(status)                                                      \
-  if (status != hipSuccess)                                                    \
-    std::cout << "Got: " << hipGetErrorString(status) << " at: " << __LINE__   \
+#define HIP_CHECK(status)                                                    \
+  if (status != hipSuccess)                                                  \
+    std::cout << "Got: " << hipGetErrorString(status) << " at: " << __LINE__ \
               << std::endl;
+
+inline void FlushGpuL2(hipEvent_t &event, hipStream_t &stream) {
+#if ENABLE_L2 == 0
+  HIP_CHECK(hipEventRecord(event, stream));
+#endif
+}
 
 constexpr int k_elements_workitem = 4;
 constexpr int k_num_workgroups = 1;
@@ -199,7 +205,7 @@ int main(int argc, char *argv[]) {
       HIP_CHECK(hipModuleLaunchKernel(v_functions[i], k_num_workgroups, 1, 1,
                                       v_num_workitems[i], 1, 1, 0, stream, NULL,
                                       (void **)&config));
-      HIP_CHECK(hipEventRecord(event, stream));
+      FlushGpuL2(event, stream);
     }
     HIP_CHECK(hipDeviceSynchronize());
     auto stop = std::chrono::high_resolution_clock::now();
@@ -214,7 +220,6 @@ int main(int argc, char *argv[]) {
     double bw = bytes / sec / double(1000 * 1000 * 1000);
 
     if (!enable_benchmarking_mode) {
-
       std::cout << "Total Time taken: " << sec << std::endl;
       std::cout << "Time taken per iteration: " << double(sec) / double(k_iter)
                 << std::endl;
@@ -270,7 +275,7 @@ int main(int argc, char *argv[]) {
     for (int j = 0; j < k_iter; j++) {
       hipLaunchKernelGGL((Foo16<k_wis, k_nloops>), dim3(1, 1, 1),
                          dim3(k_wis, 1, 1), 0, stream, d_input, d_output);
-      HIP_CHECK(hipEventRecord(event, stream));
+      FlushGpuL2(event, stream);
     }
     HIP_CHECK(hipDeviceSynchronize());
     auto stop = std::chrono::high_resolution_clock::now();
@@ -339,7 +344,7 @@ int main(int argc, char *argv[]) {
     for (int j = 0; j < k_iter; j++) {
       hipLaunchKernelGGL((Foo8<k_wis, k_nloops>), dim3(1, 1, 1),
                          dim3(k_wis, 1, 1), 0, stream, d_input, d_output);
-      HIP_CHECK(hipEventRecord(event, stream));
+      FlushGpuL2(event, stream);
     }
     HIP_CHECK(hipDeviceSynchronize());
     auto stop = std::chrono::high_resolution_clock::now();
@@ -407,7 +412,7 @@ int main(int argc, char *argv[]) {
     for (int j = 0; j < k_iter; j++) {
       hipLaunchKernelGGL((Foo4<k_wis, k_nloops>), dim3(1, 1, 1),
                          dim3(k_wis, 1, 1), 0, stream, d_input, d_output);
-      HIP_CHECK(hipEventRecord(event, stream));
+      FlushGpuL2(event, stream);
     }
     HIP_CHECK(hipDeviceSynchronize());
     auto stop = std::chrono::high_resolution_clock::now();
@@ -475,7 +480,7 @@ int main(int argc, char *argv[]) {
     for (int j = 0; j < k_iter; j++) {
       hipLaunchKernelGGL((Foo2<k_wis, k_nloops>), dim3(1, 1, 1),
                          dim3(k_wis, 1, 1), 0, stream, d_input, d_output);
-      HIP_CHECK(hipEventRecord(event, stream));
+      FlushGpuL2(event, stream);
     }
     HIP_CHECK(hipDeviceSynchronize());
     auto stop = std::chrono::high_resolution_clock::now();
@@ -543,7 +548,7 @@ int main(int argc, char *argv[]) {
     for (int j = 0; j < k_iter; j++) {
       hipLaunchKernelGGL((Foo16<k_wis, k_nloops>), dim3(1, 1, 1),
                          dim3(k_wis, 1, 1), 0, stream, d_input, d_output);
-      HIP_CHECK(hipEventRecord(event, stream));
+      FlushGpuL2(event, stream);
     }
     HIP_CHECK(hipDeviceSynchronize());
     auto stop = std::chrono::high_resolution_clock::now();
@@ -611,7 +616,7 @@ int main(int argc, char *argv[]) {
     for (int j = 0; j < k_iter; j++) {
       hipLaunchKernelGGL((Foo8<k_wis, k_nloops>), dim3(1, 1, 1),
                          dim3(k_wis, 1, 1), 0, stream, d_input, d_output);
-      HIP_CHECK(hipEventRecord(event, stream));
+      FlushGpuL2(event, stream);
     }
     HIP_CHECK(hipDeviceSynchronize());
     auto stop = std::chrono::high_resolution_clock::now();
@@ -679,7 +684,7 @@ int main(int argc, char *argv[]) {
     for (int j = 0; j < k_iter; j++) {
       hipLaunchKernelGGL((Foo4<k_wis, k_nloops>), dim3(1, 1, 1),
                          dim3(k_wis, 1, 1), 0, stream, d_input, d_output);
-      HIP_CHECK(hipEventRecord(event, stream));
+      FlushGpuL2(event, stream);
     }
     HIP_CHECK(hipDeviceSynchronize());
     auto stop = std::chrono::high_resolution_clock::now();
@@ -747,7 +752,7 @@ int main(int argc, char *argv[]) {
     for (int j = 0; j < k_iter; j++) {
       hipLaunchKernelGGL((Foo2<k_wis, k_nloops>), dim3(1, 1, 1),
                          dim3(k_wis, 1, 1), 0, stream, d_input, d_output);
-      HIP_CHECK(hipEventRecord(event, stream));
+      FlushGpuL2(event, stream);
     }
     HIP_CHECK(hipDeviceSynchronize());
     auto stop = std::chrono::high_resolution_clock::now();
@@ -815,7 +820,7 @@ int main(int argc, char *argv[]) {
     for (int j = 0; j < k_iter; j++) {
       hipLaunchKernelGGL((Foo8<k_wis, k_nloops>), dim3(1, 1, 1),
                          dim3(k_wis, 1, 1), 0, stream, d_input, d_output);
-      HIP_CHECK(hipEventRecord(event, stream));
+      FlushGpuL2(event, stream);
     }
     HIP_CHECK(hipDeviceSynchronize());
     auto stop = std::chrono::high_resolution_clock::now();
@@ -883,7 +888,7 @@ int main(int argc, char *argv[]) {
     for (int j = 0; j < k_iter; j++) {
       hipLaunchKernelGGL((Foo4<k_wis, k_nloops>), dim3(1, 1, 1),
                          dim3(k_wis, 1, 1), 0, stream, d_input, d_output);
-      HIP_CHECK(hipEventRecord(event, stream));
+      FlushGpuL2(event, stream);
     }
     HIP_CHECK(hipDeviceSynchronize());
     auto stop = std::chrono::high_resolution_clock::now();
@@ -951,7 +956,7 @@ int main(int argc, char *argv[]) {
     for (int j = 0; j < k_iter; j++) {
       hipLaunchKernelGGL((Foo2<k_wis, k_nloops>), dim3(1, 1, 1),
                          dim3(k_wis, 1, 1), 0, stream, d_input, d_output);
-      HIP_CHECK(hipEventRecord(event, stream));
+      FlushGpuL2(event, stream);
     }
     HIP_CHECK(hipDeviceSynchronize());
     auto stop = std::chrono::high_resolution_clock::now();
