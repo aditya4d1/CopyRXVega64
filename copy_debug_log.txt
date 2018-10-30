@@ -1,0 +1,156 @@
+Length: 262144
+Loading file copy_256_16_16_256.co ... 
+Loading file copy_256_8_32_256.co ... 
+Loading file copy_256_4_64_256.co ... 
+Loading file copy_256_2_128_256.co ... 
+Loading file copy_128_16_8_512.co ... 
+Loading file copy_128_8_16_512.co ... 
+Loading file copy_128_4_32_512.co ... 
+Loading file copy_128_2_64_512.co ... 
+Loading file copy_64_8_8_1024.co ... 
+Loading file copy_64_4_16_1024.co ... 
+Loading file copy_64_2_32_1024.co ... 
+Finding kernel foo_256_16_16_256 ... 
+Finding kernel foo_256_8_32_256 ... 
+Finding kernel foo_256_4_64_256 ... 
+Finding kernel foo_256_2_128_256 ... 
+Finding kernel foo_128_16_8_512 ... 
+Finding kernel foo_128_8_16_512 ... 
+Finding kernel foo_128_4_32_512 ... 
+Finding kernel foo_128_2_64_512 ... 
+Finding kernel foo_64_8_8_1024 ... 
+Finding kernel foo_64_4_16_1024 ... 
+Finding kernel foo_64_2_32_1024 ... 
+0x90183f000 0x901c00000
+Running kernel foo_256_16_16_256 ... 
+Total Time taken: 0.00168056
+Time taken per iteration: 5.25174e-05
+total loops = 256 unroll factor = 16 num loops = 16
+Bandwidth: 39.9325 GBps
+Finished running kernel foo_256_16_16_256
+Running kernel foo_256_8_32_256 ... 
+Total Time taken: 0.00167698
+Time taken per iteration: 5.24056e-05
+total loops = 256 unroll factor = 8 num loops = 32
+Bandwidth: 40.0177 GBps
+Finished running kernel foo_256_8_32_256
+Running kernel foo_256_4_64_256 ... 
+Total Time taken: 0.00167773
+Time taken per iteration: 5.24291e-05
+total loops = 256 unroll factor = 4 num loops = 64
+Bandwidth: 39.9998 GBps
+Finished running kernel foo_256_4_64_256
+Running kernel foo_256_2_128_256 ... 
+Total Time taken: 0.00218364
+Time taken per iteration: 6.82386e-05
+total loops = 256 unroll factor = 2 num loops = 128
+Bandwidth: 30.7326 GBps
+Finished running kernel foo_256_2_128_256
+Running kernel foo_128_16_8_512 ... 
+Total Time taken: 0.00165133
+Time taken per iteration: 5.16041e-05
+total loops = 128 unroll factor = 16 num loops = 8
+Bandwidth: 40.6393 GBps
+Finished running kernel foo_128_16_8_512
+Running kernel foo_128_8_16_512 ... 
+Total Time taken: 0.00166109
+Time taken per iteration: 5.19091e-05
+total loops = 128 unroll factor = 8 num loops = 16
+Bandwidth: 40.4005 GBps
+Finished running kernel foo_128_8_16_512
+Running kernel foo_128_4_32_512 ... 
+Total Time taken: 0.00165848
+Time taken per iteration: 5.18277e-05
+total loops = 128 unroll factor = 4 num loops = 32
+Bandwidth: 40.464 GBps
+Finished running kernel foo_128_4_32_512
+Running kernel foo_128_2_64_512 ... 
+Total Time taken: 0.00170629
+Time taken per iteration: 5.33217e-05
+total loops = 128 unroll factor = 2 num loops = 64
+Bandwidth: 39.3302 GBps
+Finished running kernel foo_128_2_64_512
+Running kernel foo_64_8_8_1024 ... 
+Total Time taken: 0.00166319
+Time taken per iteration: 5.19748e-05
+total loops = 64 unroll factor = 8 num loops = 8
+Bandwidth: 40.3494 GBps
+Finished running kernel foo_64_8_8_1024
+Running kernel foo_64_4_16_1024 ... 
+Total Time taken: 0.00166559
+Time taken per iteration: 5.20496e-05
+total loops = 64 unroll factor = 4 num loops = 16
+Bandwidth: 40.2914 GBps
+Finished running kernel foo_64_4_16_1024
+Running kernel foo_64_2_32_1024 ... 
+Total Time taken: 0.00172748
+Time taken per iteration: 5.39838e-05
+total loops = 64 unroll factor = 2 num loops = 32
+Bandwidth: 38.8478 GBps
+Finished running kernel foo_64_2_32_1024
+Running kernel foo_256_16_16_256_hip ... 
+Total Time taken: 0.0057758
+Time taken per iteration: 0.000180494
+total loops = 256 unroll factor = 16 num loops = 16
+Bandwidth: 11.619 GBps
+Finished running kernel foo_256_16_16_256_hip
+Running kernel foo_256_8_32_256_hip ... 
+Total Time taken: 0.00577244
+Time taken per iteration: 0.000180389
+total loops = 256 unroll factor = 8 num loops = 32
+Bandwidth: 11.6257 GBps
+Finished running kernel foo_256_8_32_256_hip
+Running kernel foo_256_4_64_256_hip ... 
+Total Time taken: 0.00567751
+Time taken per iteration: 0.000177422
+total loops = 256 unroll factor = 4 num loops = 64
+Bandwidth: 11.8201 GBps
+Finished running kernel foo_256_4_64_256_hip
+Running kernel foo_256_2_128_256_hip ... 
+Total Time taken: 0.00576398
+Time taken per iteration: 0.000180124
+total loops = 256 unroll factor = 2 num loops = 128
+Bandwidth: 11.6428 GBps
+Finished running kernel foo_256_2_128_256_hip
+Running kernel foo_128_16_8_512_hip ... 
+Total Time taken: 0.00321785
+Time taken per iteration: 0.000100558
+total loops = 128 unroll factor = 16 num loops = 8
+Bandwidth: 20.8552 GBps
+Finished running kernel foo_128_16_8_512_hip
+Running kernel foo_128_8_16_512_hip ... 
+Total Time taken: 0.00321901
+Time taken per iteration: 0.000100594
+total loops = 128 unroll factor = 8 num loops = 16
+Bandwidth: 20.8477 GBps
+Finished running kernel foo_128_8_16_512_hip
+Running kernel foo_128_4_32_512_hip ... 
+Total Time taken: 0.00319866
+Time taken per iteration: 9.99581e-05
+total loops = 128 unroll factor = 4 num loops = 32
+Bandwidth: 20.9803 GBps
+Finished running kernel foo_128_4_32_512_hip
+Running kernel foo_128_2_64_512_hip ... 
+Total Time taken: 0.00321679
+Time taken per iteration: 0.000100525
+total loops = 128 unroll factor = 2 num loops = 64
+Bandwidth: 20.862 GBps
+Finished running kernel foo_128_2_64_512_hip
+Running kernel foo_64_8_8_1024_hip ... 
+Total Time taken: 0.00194159
+Time taken per iteration: 6.06748e-05
+total loops = 64 unroll factor = 8 num loops = 8
+Bandwidth: 34.5638 GBps
+Finished running kernel foo_64_8_8_1024_hip
+Running kernel foo_64_4_16_1024_hip ... 
+Total Time taken: 0.00192625
+Time taken per iteration: 6.01954e-05
+total loops = 64 unroll factor = 4 num loops = 16
+Bandwidth: 34.8391 GBps
+Finished running kernel foo_64_4_16_1024_hip
+Running kernel foo_64_2_32_1024_hip ... 
+Total Time taken: 0.00203085
+Time taken per iteration: 6.34641e-05
+total loops = 64 unroll factor = 2 num loops = 32
+Bandwidth: 33.0447 GBps
+Finished running kernel foo_64_2_32_1024_hip
