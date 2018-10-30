@@ -84,3 +84,7 @@ The following chart shows performance of different kernels
 - Different kernels used for benchmarking is shown on X-axis
 - Each colored line in the graph represents a power state
 - Power states in the graph are named after which power domain it represents and the state it is in. For example **S5M3** represents **shader clock = 1401MHz** and **memory clock = 945MHz**
+
+The following chart shows performance of different kernels accessing data from L2
+
+![alt text](https://github.com/adityaatluri/CopyRXVega64/raw/master/docs/results_l2.png)
